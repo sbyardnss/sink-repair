@@ -1,11 +1,13 @@
-import { getRequests, sendRequest } from "./dataAccess.js"
+import { getRequests, sendRequest, getPlumbers} from "./dataAccess.js"
 
 
 const convertRequestsToList = () => {
+    const plumbers = getPlumbers()
     const requests = getRequests()
     let html = ""
     for (const request of requests) {
         html += `<li>${request.description}</li>`
+                
     }
     return html
 }
