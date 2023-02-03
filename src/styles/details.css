@@ -27,22 +27,30 @@ button:active {
             box-shadow: inset 0px 0px 5px #c1c1c1;
      outline: none;
   }
-
+#requestList {
+    display: block;
+    width: 500px;
+}
 .openRequests {
     display: inline-block;
     border: 1px solid gray;
     padding: 4px;
-    width: 400px;
+    width: inherit;
     background-color: lavender;
 }
 .closedRequests {
     display: inline-block;
     border: 1px solid gray;
     padding: 4px;
-    width: 400px;
+    width: inherit;
     background-color: lightpink;
 }
 
 .request__delete {
     float: right;   
 }
+
+.plumbers {
+    margin-left: 30px;
+}
+

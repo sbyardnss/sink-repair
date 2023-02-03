@@ -67,7 +67,7 @@ export const Requests = () => {
     //     null;
     // }
     let html = `
-        <ul>
+        <ul id="requestList">
             ${
                 requests.map(convertRequestsToList).join("")
             }
