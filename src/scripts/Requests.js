@@ -26,7 +26,7 @@ const convertRequestsToList = (obj) => {
     const plumbers = getPlumbers()
     let html = ""
     if (obj.completed === false) {
-        html += `<li>${obj.description}
+        html += `<li class="openRequests">${obj.description}
                 <select class="plumbers" id="plumbers">
                     <option value="0">${`Choose`}</option>
                     ${
@@ -44,7 +44,9 @@ const convertRequestsToList = (obj) => {
             </li>`
         }
     if (obj.completed === true) {
-        html += `<li>${obj.description}`
+        html += `<li class="closedRequests">${obj.description}
+            <button class="request__delete" id="request--${obj.id}">Delete</button>
+        </li>`
     }
 
     // OLD CODE THAT TRIPLED LIST BECAUSE YOU ARE EFFECTIVELY ITERRATING TWICE

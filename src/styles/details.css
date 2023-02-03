@@ -27,3 +27,22 @@ button:active {
             box-shadow: inset 0px 0px 5px #c1c1c1;
      outline: none;
   }
+
+.openRequests {
+    display: inline-block;
+    border: 1px solid gray;
+    padding: 4px;
+    width: 400px;
+    background-color: lavender;
+}
+.closedRequests {
+    display: inline-block;
+    border: 1px solid gray;
+    padding: 4px;
+    width: 400px;
+    background-color: lightpink;
+}
+
+.request__delete {
+    float: right;   
+}
