@@ -47,13 +47,15 @@ mainContainer.addEventListener("click", clickEvent => {
         const userAddress = document.querySelector("input[name='serviceAddress']").value
         const userBudget = document.querySelector("input[name='serviceBudget']").value
         const userDate = document.querySelector("input[name='serviceDate']").value
+        const completionStatus = false;
 
         // Make an object out of the user input
         const dataToSendToAPI = {
             description: userDescription,
             address: userAddress,
             budget: userBudget,
-            neededBy: userDate
+            neededBy: userDate,
+            completed: completionStatus
         }
 
         // Send the data to the API for permanent storage

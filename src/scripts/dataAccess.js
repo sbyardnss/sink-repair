@@ -16,8 +16,11 @@ export const fetchRequests = () => {
 }
 
 export const getRequests = () => {
-    return applicationState.requests.map(request => ({...request}))
+    const newArray = applicationState.requests.sort((a, b) => (a.completed === b.completed) ? 0 : (a.completed > b.completed) ? 1 : -1)
+    return newArray
 }
+
+
 const mainContainer = document.querySelector("#container")
 
 export const sendRequest = (userServiceRequest) => {
@@ -93,3 +96,19 @@ export const fetchCompletions = () => {
 
 
 // }
+
+export const changeRequest = (objectId, object) => {
+    const fetchOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(object)
+    }
+
+    return fetch(`${API}/requests/${objectId}`, fetchOptions)
+    .then(response => response.json())
+    .then (() => {
+        document.querySelector("#container").dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}

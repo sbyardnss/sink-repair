@@ -1,4 +1,4 @@
-import { getRequests, deleteRequest, getPlumbers, sendRequest, sendCompletion} from "./dataAccess.js"
+import { getRequests, deleteRequest, getPlumbers, sendRequest, sendCompletion, changeRequest} from "./dataAccess.js"
 
 
 // const convertRequestsToList = () => {
@@ -24,29 +24,28 @@ import { getRequests, deleteRequest, getPlumbers, sendRequest, sendCompletion} f
 
 const convertRequestsToList = (obj) => {
     const plumbers = getPlumbers()
-    const requests = getRequests()
     let html = ""
-    html += `<li>${obj.description}
-
-
-             <select class="plumbers" id="plumbers">
-                <option value="0">${`Choose`}</option>
-                ${
-                    plumbers.map(
-                        plumber => {
-                            return `<option value="${obj.id}--${plumber.id}">${plumber.name}</option>`
-                        }
-                    ).join("")
-                }
-            </select>
-
-
-
-            <button class="request__delete"
-                    id="request--${obj.id}">
-                Delete
-            </button>
-        </li>`
+    if (obj.completed === false) {
+        html += `<li>${obj.description}
+                <select class="plumbers" id="plumbers">
+                    <option value="0">${`Choose`}</option>
+                    ${
+                        plumbers.map(
+                            plumber => {
+                                return `<option value="${obj.id}--${plumber.id}">${plumber.name}</option>`
+                            }
+                        ).join("")
+                    }
+                </select>
+                <button class="request__delete"
+                        id="request--${obj.id}">
+                    Delete
+                </button>
+            </li>`
+        }
+    if (obj.completed === true) {
+        html += `<li>${obj.description}`
+    }
 
     // OLD CODE THAT TRIPLED LIST BECAUSE YOU ARE EFFECTIVELY ITERRATING TWICE
     // for (const request of requests) {
@@ -57,12 +56,20 @@ const convertRequestsToList = (obj) => {
 
 export const Requests = () => {
     const requests = getRequests()
-    const requestList = ""
+    // const requestList = ""
+    // const openRequests = []
+    // const completedRequests = []
+    // for (const request of requests) {
+    //     request.completed = false ? openRequests.push(request) : 
+    //     request.completed = true ? completedRequests.push(request) :
+    //     null;
+    // }
     let html = `
         <ul>
             ${
                 requests.map(convertRequestsToList).join("")
             }
+            
         </ul>
     `
     return html
@@ -90,12 +97,21 @@ mainContainer.addEventListener(
                    2. plumberId
                    3. date_created
             */
-            const completion = { 
-                "plumberId": plumberId,
-                "requestId": requestId,
-                "date": Date.now()
-            }
-            sendCompletion(completion)
+            // const completion = { 
+            //     "plumberId": plumberId,
+            //     "requestId": requestId,
+            //     "date": Date.now()
+            // }
+            // sendCompletion(completion)
+            const requests = getRequests()
+            const foundRequest = requests.find((request) => {
+                return request.id === parseInt(requestId)
+            })
+            
+            foundRequest.completed = true
+            changeRequest(requestId, foundRequest)
+                
+            
             /*
                 Invoke the function that performs the POST request
                 to the `completions` resource for your API. Send the
