@@ -99,12 +99,12 @@ mainContainer.addEventListener(
                    2. plumberId
                    3. date_created
             */
-            // const completion = { 
-            //     "plumberId": plumberId,
-            //     "requestId": requestId,
-            //     "date": Date.now()
-            // }
-            // sendCompletion(completion)
+            const completion = { 
+                "plumberId": plumberId,
+                "requestId": requestId,
+                "date": Date.now()
+            }
+            sendCompletion(completion)
             const requests = getRequests()
             const foundRequest = requests.find((request) => {
                 return request.id === parseInt(requestId)

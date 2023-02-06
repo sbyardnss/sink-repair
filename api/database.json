@@ -9,14 +9,27 @@
       "name": "Merle"
     }
   ],
-  "completions": [],
+  "completions": [
+    {
+      "plumberId": "1",
+      "requestId": "2",
+      "date": 1675711108714,
+      "id": 1
+    },
+    {
+      "plumberId": "2",
+      "requestId": "6",
+      "date": 1675711128087,
+      "id": 2
+    }
+  ],
   "requests": [
     {
       "description": "broken belly button",
       "address": "101 my st",
       "budget": "10000000",
       "neededBy": "2023-02-09",
-      "completed": false,
+      "completed": true,
       "id": 2
     },
     {
